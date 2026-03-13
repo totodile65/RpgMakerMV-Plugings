@@ -1,5 +1,5 @@
 /*:
- * @plugindesc Este pluging te permite poner requisitos a las armas, armaduras
+ * @plugindesc Este pluging te permite poner requisitos a las armas, armaduras, si quiers darme creditos eres libre de hacerlo
  * @author totodile65
  *
  * @param Mensaje Error
@@ -70,14 +70,12 @@
         return null;
     };
 
-    // 1. BLOQUEO VISUAL (Gris)
     var _Window_EquipItem_isEnabled = Window_EquipItem.prototype.isEnabled;
     Window_EquipItem.prototype.isEnabled = function(item) {
         if (this._actor && item && this._actor.getMissingStat(item)) return false;
         return _Window_EquipItem_isEnabled.call(this, item);
     };
 
-    // 2. BLOQUEO DE ACCIÓN
     var _Scene_Equip_onItemOk = Scene_Equip.prototype.onItemOk;
     Scene_Equip.prototype.onItemOk = function() {
         var item = this._itemWindow.item();
@@ -89,8 +87,6 @@
         }
         _Scene_Equip_onItemOk.call(this);
     };
-
-    // 3. INTERFAZ EN DESCRIPCIÓN CON COLORES DINÁMICOS
     var _Window_Help_setItem = Window_Help.prototype.setItem;
     Window_Help.prototype.setItem = function(item) {
         var scene = SceneManager._scene;
